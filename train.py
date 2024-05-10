@@ -4,13 +4,13 @@ from dataset import create_next_token_dataloader
 from model import GPTModel
 from tokenizer import TiktokenTokenizer
 
-filename = "tinyshakespeare.txt"
+filename = "merged.txt"
 
 batch_size = 32
 
 context_len = 32
 
-emb_dim = 768
+emb_dim = 96
 
 drop_rate = 0.1
 
@@ -62,7 +62,7 @@ print("Compute first loss")
 # train_loss, val_loss = model.get_loss(train_dataloader, val_dataloader)
 # print(train_loss, val_loss)
 
-optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3)
+optimizer = torch.optim.AdamW(model.parameters(), lr=1e-4)
 model.train_loop(
     train_dataloader=train_dataloader,
     val_dataloader=val_dataloader,

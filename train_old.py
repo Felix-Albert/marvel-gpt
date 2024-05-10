@@ -80,8 +80,17 @@ def train_model_simple(model, train_loader, val_loader, optimizer, num_epochs,
                 train_losses.append(train_loss)
                 val_losses.append(val_loss)
                 track_tokens_seen.append(tokens_seen)
+                lossInfo = f"Ep {epoch + 1} (Step {global_step:06d}): Train loss {train_loss:.3f}, Val loss {val_loss:.3f}\n"
+                
                 print(f"Ep {epoch + 1} (Step {global_step:06d}): "
                       f"Train loss {train_loss:.3f}, Val loss {val_loss:.3f}")
+                
+                filename = "training_info.txt"
+
+                # Open the file in append mode and write the information
+                with open(filename, 'a') as file:
+                    file.write(lossInfo)
+                
 
         generate_and_print_sample(
             model, train_loader.dataset.tokenizer, start_context

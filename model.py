@@ -49,7 +49,14 @@ class GPTModel(nn.Module):
                 logits = self(context_tokens)
 
             last_logits = logits[:, -1, :]
-            next_token_id = torch.argmax(last_logits, dim=-1, keepdim=True)
+            #next_token_id = torch.argmax(last_logits, dim=-1, keepdim=True)
+           
+
+            # next_token_id = torch.argmax(last_logits, dim=-1, keepdim=True)
+            probabilities = torch.nn.functional.softmax(last_logits, dim=-1)
+
+            # Sample next token ID from the probability distribution
+            next_token_id = torch.multinomial(probabilities, num_samples=1)
             token_ids = torch.cat((token_ids, next_token_id), dim=1)
 
         return token_ids[0]
