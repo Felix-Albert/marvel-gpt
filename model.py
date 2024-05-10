@@ -51,7 +51,6 @@ class GPTModel(nn.Module):
             last_logits = logits[:, -1, :]
             #next_token_id = torch.argmax(last_logits, dim=-1, keepdim=True)
            
-
             # next_token_id = torch.argmax(last_logits, dim=-1, keepdim=True)
             probabilities = torch.nn.functional.softmax(last_logits, dim=-1)
 
@@ -111,5 +110,11 @@ class GPTModel(nn.Module):
 
             train_loss, val_loss = self.get_loss(train_dataloader, val_dataloader)
             print(f"Epoch {epoch}: Train loss={round(train_loss, 2)}, Validation loss={round(val_loss, 2)}")
+            lossInfo = f"Epoch {epoch}: Train loss={round(train_loss, 2)}, Validation loss={round(val_loss, 2)}"
+            filename = "training_info.txt"
+            
+            with open(filename, 'a') as file:
+                print(f"Writing in file {filename}")
+                file.write(lossInfo)
 
             torch.save(self.state_dict(), f"model_{epoch}.pth")

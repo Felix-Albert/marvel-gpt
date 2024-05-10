@@ -8,15 +8,17 @@ filename = "merged.txt"
 
 batch_size = 32
 
-context_len = 32
+context_len = 64
 
-emb_dim = 96
+n_heads = 8 
+
+emb_dim = n_heads * 16
 
 drop_rate = 0.1
 
-n_layers = 3
+n_layers = 4
 
-n_heads = 6
+
 
 with open(filename, "r", encoding="utf-8") as f:
     data = f.read()

@@ -1,0 +1,20 @@
+Test2:
+
+batch_size = 64
+
+context_len = 40
+
+n_heads = 8 
+
+emb_dim = n_heads * 20
+
+drop_rate = 0.1
+
+n_layers = 2
+
+Epoch 0: Train loss=6.17, Validation loss=6.58
+Epoch 1: Train loss=5.64, Validation loss=6.14
+Epoch 2: Train loss=5.21, Validation loss=5.83
+Epoch 6: Train loss=4.3, Validation loss=5.27
+Epoch 7: Train loss=4.18, Validation loss=5.21
+Epoch 8: Train loss=4.08, Validation loss=5.16

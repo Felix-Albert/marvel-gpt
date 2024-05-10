@@ -3,17 +3,17 @@ import torch
 from model import GPTModel
 from tokenizer import TiktokenTokenizer
 
-batch_size = 32
+batch_size = 64
 
-context_len = 32
+context_len = 40
 
-emb_dim = 96
+n_heads = 8 
+
+emb_dim = n_heads * 20
 
 drop_rate = 0.1
 
-n_layers = 3
-
-n_heads = 6
+n_layers = 2
 
 tokenizer = TiktokenTokenizer()
 vocab_size = tokenizer.vocab_size
@@ -23,8 +23,8 @@ model = GPTModel(
     n_heads=n_heads, qkv_bias=False
 )
 
-token_ids = tokenizer.encode("I am")
-model.load_state_dict(torch.load("model_3.pth"))
+token_ids = tokenizer.encode("Tony Stark: I am")
+model.load_state_dict(torch.load("model_8.pth"))
 model.eval()
 generated_ids = model.generate_token_ids(torch.tensor(token_ids), max_new_tokens=50, context_len=context_len)
 
