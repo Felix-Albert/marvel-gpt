@@ -4,19 +4,14 @@ from dataset import create_next_token_dataloader
 from model import GPTModel
 from tokenizer import TiktokenTokenizer
 
-filename = "tinyshakespeare.txt"
+filename = "merged.txt"
 
 batch_size = 32
-
-context_len = 32
-
-emb_dim = 768
-
-drop_rate = 0.1
-
-n_layers = 3
-
+context_len = 64
 n_heads = 6
+n_layers = 3
+emb_dim = n_heads * 16
+drop_rate = 0.1
 
 with open(filename, "r", encoding="utf-8") as f:
     data = f.read()

@@ -3,17 +3,12 @@ import torch
 from model import GPTModel
 from tokenizer import TiktokenTokenizer
 
-batch_size = 8
-
-context_len = 16
-
-emb_dim = 768
-
-drop_rate = 0.1
-
-n_layers = 6
-
+batch_size = 32
+context_len = 64
 n_heads = 6
+n_layers = 3
+emb_dim = n_heads * 16
+drop_rate = 0.1
 
 tokenizer = TiktokenTokenizer()
 vocab_size = tokenizer.vocab_size
